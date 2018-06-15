@@ -5,8 +5,15 @@
  */
 package br.udesc.ceavi.progii.models;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Essa classe serve para setar informações sobre produtos e para pegar essas informações
@@ -14,24 +21,36 @@ import java.util.Objects;
  * @version 1.0
  * @since 23/03/2018
  */
-public class Produtos {
+@Entity
+@Table(name = "Estoque")
+public class Produtos implements Serializable {
+    @Id
+    @Column(name = "id_Estoque")
     private int id ;
+    
+    
     private String nome ; 
+    
     private int quantidade ;
+    
     private double preco ;
-    private Date validade;
+    
+    private String validade;
+    
     private int lote ;
-    private Mercado oMercado ; 
+    
+    @OneToMany
+    @Column(name = "Filial")
+    private Filial aFilial ; 
+    
+    @OneToMany
+    @Column(name="Fornecedor")
     private Fornecedores fornecedor ;
 
-    public Produtos(int id, String nome, int quantidade, double preco, Date validade, int lote, Mercado oMercado) {
-        this.id = id;
-        this.nome = nome;
-        this.quantidade = quantidade;
-        this.preco = preco;
-        this.validade = validade;
-        this.lote = lote;
-        this.oMercado = oMercado;
+   
+
+    public Produtos() {
+        
     }
 
     public int getId() {
@@ -66,11 +85,11 @@ public class Produtos {
         this.preco = preco;
     }
 
-    public Date getValidade() {
+    public String getValidade() {
         return validade;
     }
 
-    public void setValidade(Date validade) {
+    public void setValidade(String validade) {
         this.validade = validade;
     }
 
@@ -82,16 +101,33 @@ public class Produtos {
         this.lote = lote;
     }
 
+    public Filial getaFilial() {
+        return aFilial;
+    }
+
+    public void setaFilial(Filial aFilial) {
+        this.aFilial = aFilial;
+    }
+
+    public Fornecedores getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedores fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.id;
-        hash = 37 * hash + Objects.hashCode(this.nome);
-        hash = 37 * hash + this.quantidade;
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.preco) ^ (Double.doubleToLongBits(this.preco) >>> 32));
-        hash = 37 * hash + Objects.hashCode(this.validade);
-        hash = 37 * hash + this.lote;
-        hash = 37 * hash + Objects.hashCode(this.oMercado);
+        hash = 43 * hash + this.id;
+        hash = 43 * hash + Objects.hashCode(this.nome);
+        hash = 43 * hash + this.quantidade;
+        hash = 43 * hash + (int) (Double.doubleToLongBits(this.preco) ^ (Double.doubleToLongBits(this.preco) >>> 32));
+        hash = 43 * hash + Objects.hashCode(this.validade);
+        hash = 43 * hash + this.lote;
+        hash = 43 * hash + Objects.hashCode(this.aFilial);
+        hash = 43 * hash + Objects.hashCode(this.fornecedor);
         return hash;
     }
 
@@ -125,7 +161,10 @@ public class Produtos {
         if (!Objects.equals(this.validade, other.validade)) {
             return false;
         }
-        if (!Objects.equals(this.oMercado, other.oMercado)) {
+        if (!Objects.equals(this.aFilial, other.aFilial)) {
+            return false;
+        }
+        if (!Objects.equals(this.fornecedor, other.fornecedor)) {
             return false;
         }
         return true;
@@ -133,7 +172,7 @@ public class Produtos {
 
     @Override
     public String toString() {
-        return "Produtos{" + "id=" + id + ", nome=" + nome + ", quantidade=" + quantidade + ", preco=" + preco + ", validade=" + validade + ", lote=" + lote + oMercado.toString();
+        return "Produtos{" + "id=" + id + ", nome=" + nome + ", quantidade=" + quantidade + ", preco=" + preco + ", validade=" + validade + ", lote=" + lote + ", aFilial=" + aFilial + ", fornecedor=" + fornecedor + '}';
     }
     
     

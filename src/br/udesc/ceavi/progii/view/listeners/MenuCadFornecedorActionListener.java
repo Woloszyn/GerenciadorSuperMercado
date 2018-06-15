@@ -5,32 +5,29 @@
  */
 package br.udesc.ceavi.progii.view.listeners;
 
-import br.udesc.ceavi.progii.models.Filial;
-import br.udesc.ceavi.progii.view.FrameCRUDFiliais;
+import br.udesc.ceavi.progii.models.Fornecedores;
+import br.udesc.ceavi.progii.view.FrameCRUDFornecedor;
 import br.udesc.ceavi.progii.view.principal.FrameSistema;
 import java.awt.event.ActionEvent;
 
 /**
- * Classe para cadastrar o internalFrame de filiais à desktop
+ *
  * @author Eduardo Woloszyn
- * @since 07/05/2018
- * @version 1.0
  */
-public class MenuCadFiliaisActionListener extends MenuActionListener {
+public class MenuCadFornecedorActionListener extends MenuActionListener {
 
-    public MenuCadFiliaisActionListener(FrameSistema tela) {
+    public MenuCadFornecedorActionListener(FrameSistema tela) {
         super(tela);
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        Filial filial = new Filial();
+        Fornecedores fornecedor = new Fornecedores();
+        frame = FrameCRUDFornecedor.getInstance();
         
-        frame = FrameCRUDFiliais.getInstance();
+        ((FrameCRUDFornecedor)frame).setFornecedores(fornecedor);
         
-        ((FrameCRUDFiliais)frame).setFilial(filial);
-        
-        ListenerCRUDFiliais listener = ListenerCRUDFiliais.getInstancia(filial, frame);
+        ListenerCRUDFornecedor listener = ListenerCRUDFornecedor.getInstancia(fornecedor, frame) ;
         
         tela.addIntFrame(frame);
         frame.setVisible(true);

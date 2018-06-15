@@ -6,19 +6,22 @@
 package br.udesc.ceavi.progii.view.principal;
 
 import br.udesc.ceavi.progii.view.listeners.MenuCadCaixaActionListener;
+import br.udesc.ceavi.progii.view.listeners.MenuCadEstoqueActionListener;
 import br.udesc.ceavi.progii.view.listeners.MenuCadFiliaisActionListener;
+import br.udesc.ceavi.progii.view.listeners.MenuCadFornecedorActionListener;
+import br.udesc.ceavi.progii.view.listeners.MenuCadPessoaActionListener;
 import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 /**
- *
+ * Menu bar
  * @author Eduardo Woloszyn
  */
 public class MenuSistema extends JMenuBar {
     private JMenu menuCaixa;
-    
+    //teste
     private JMenu menuEstoque;
     private JMenu menuCadastroPessoa;
     private JMenu menuFiliais;
@@ -87,6 +90,14 @@ public class MenuSistema extends JMenuBar {
         listener = new MenuCadFiliaisActionListener(tela);
         menuCrudFiliais.addActionListener(listener);
         
+        listener = new MenuCadPessoaActionListener(tela);
+        menuCrudCadPessoa.addActionListener(listener);
+        
+        listener = new MenuCadEstoqueActionListener(tela);
+        menuCrudEstoque.addActionListener(listener);
+        
+        listener = new MenuCadFornecedorActionListener(tela);
+        menuCrudFornecedor.addActionListener(listener);
         
     }
     

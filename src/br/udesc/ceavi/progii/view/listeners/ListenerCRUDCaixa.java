@@ -1,10 +1,17 @@
 
 package br.udesc.ceavi.progii.view.listeners;
 
+import br.udesc.ceavi.progii.control.dao.exceptions.LetraCaixaException;
+import br.udesc.ceavi.progii.control.dao.interfaces.CaixaDAO;
+import br.udesc.ceavi.progii.control.dao.interfaces.DAO;
+import br.udesc.ceavi.progii.control.dao.interfaces.FiliaisDAO;
 import br.udesc.ceavi.progii.models.Caixa;
 import br.udesc.ceavi.progii.view.FrameCRUD;
+import br.udesc.ceavi.progii.view.FrameCRUDCaixa;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -94,6 +101,25 @@ public class ListenerCRUDCaixa {
         @Override
         public void actionPerformed(ActionEvent e) {
            // falta a classe controller 
+            DAO dao = new CaixaDAO();
+            try {
+            caixa = ((FrameCRUDCaixa)frame).getCaixa();
+                
+            } catch (NumberFormatException c) {
+                JOptionPane.showMessageDialog(null, "Não é permitido usar letras aqui ","Erro",JOptionPane.ERROR_MESSAGE);
+                ((FrameCRUDCaixa)frame).getTfEntrada().setText("*");
+                ((FrameCRUDCaixa)frame).getTfSaida().setText("*");
+                
+            }
+            
+            try {
+                dao.btnGravar(caixa);
+                frame.limparCampos();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,"Erro "+ex.getMessage());
+                Logger.getLogger(ListenerCRUDCaixa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
            
            frame.limparCampos();
         }

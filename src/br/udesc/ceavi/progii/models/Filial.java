@@ -5,7 +5,12 @@
  */
 package br.udesc.ceavi.progii.models;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Classe modelo para Filiais
@@ -13,35 +18,34 @@ import java.util.Objects;
  * @since 07/05/2018
  * @version 1.0
  */
-public class Filial {
+@Entity
+@Table(name = "Filial")
+public class Filial implements Serializable {
+    @Column(name = "nome_filial")
     private String nome ;
+    @Id
     private String cnpj ;
+    @Column(name = "cep_filial")
     private String cep ;
-    private short numero ;
+    @Column(name= "numero_filial")
+    private int numero ;
+    @Column(name = "cidade_filial")
     private String cidade ;
+    @Column(name="rua_filial")
     private String rua ;
+    @Column(name="bairro_filial")
     private String bairro ;
-
-    public Filial(String nome, String cnpj, String cep, short numero, String cidade, String rua, String bairro) {
-        this.nome = nome;
-        this.cnpj = cnpj;
-        this.cep = cep;
-        this.numero = numero;
-        this.cidade = cidade;
-        this.rua = rua;
-        this.bairro = bairro;
-    }
-
+    
     public Filial() {
     }
-
+    
     public String getNome() {
         return nome;
     }
-
+    
     public void setNome(String nome) {
         this.nome = nome;
-    }
+}
 
     public String getCnpj() {
         return cnpj;
@@ -59,11 +63,11 @@ public class Filial {
         this.cep = cep;
     }
 
-    public short getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(short numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -93,14 +97,14 @@ public class Filial {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 31 * hash + Objects.hashCode(this.nome);
-        hash = 31 * hash + Objects.hashCode(this.cnpj);
-        hash = 31 * hash + Objects.hashCode(this.cep);
-        hash = 31 * hash + this.numero;
-        hash = 31 * hash + Objects.hashCode(this.cidade);
-        hash = 31 * hash + Objects.hashCode(this.rua);
-        hash = 31 * hash + Objects.hashCode(this.bairro);
+        int hash = 5;
+        hash = 19 * hash + Objects.hashCode(this.nome);
+        hash = 19 * hash + Objects.hashCode(this.cnpj);
+        hash = 19 * hash + Objects.hashCode(this.cep);
+        hash = 19 * hash + this.numero;
+        hash = 19 * hash + Objects.hashCode(this.cidade);
+        hash = 19 * hash + Objects.hashCode(this.rua);
+        hash = 19 * hash + Objects.hashCode(this.bairro);
         return hash;
     }
 
@@ -140,11 +144,11 @@ public class Filial {
         return true;
     }
 
-   
     @Override
     public String toString() {
-        return "Filial" + "\n Nome= " + nome + "\n CNPJ=" + cnpj + "\n Cep=" + cep + "\n Número= " + numero + "\n Cidade= " + cidade + "\n Rua= " + rua + "\n Bairro= " + bairro ;
+        return "Filial{" + "nome=" + nome + ", cnpj=" + cnpj + ", cep=" + cep + ", numero=" + numero + ", cidade=" + cidade + ", rua=" + rua + ", bairro=" + bairro + '}';
     }
+
     
     
     

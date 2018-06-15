@@ -11,6 +11,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.LayoutManager;
+import static javafx.scene.input.KeyCode.X;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -72,6 +73,5 @@ public abstract class FrameCRUD extends JInternalFrame {
 
     public abstract void limparCampos() ;
     
-    public abstract void carregarCampos() ;
     
 }

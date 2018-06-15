@@ -146,24 +146,25 @@ public class PanelEndereco extends JPanel{
         this.lbCEP = lbCEP;
     }
 
-    public void setTfRua(JTextField tfRua) {
-        this.tfRua = tfRua;
+    public void setTfRua(String tfRua) {
+        this.tfRua.setText(tfRua);
     }
 
-    public void setTfNumero(JTextField tfNumero) {
-        this.tfNumero = tfNumero;
+    public void setTfNumero(int tfNumero) {
+        String s = ""+tfNumero;
+        this.tfNumero.setText(s);
     }
 
-    public void setTfBairro(JTextField tfBairro) {
-        this.tfBairro = tfBairro;
+    public void setTfBairro(String tfBairro) {
+        this.tfBairro.setText(tfBairro);
     }
 
-    public void setTfCidade(JTextField tfCidade) {
-        this.tfCidade = tfCidade;
+    public void setTfCidade(String tfCidade) {
+        this.tfCidade.setText(tfCidade);
     }
 
-    public void setTfCEP(JTextField tfCEP) {
-        this.tfCEP = tfCEP;
+    public void setTfCEP(String tfCEP) {
+        this.tfCEP.setText(tfCEP);
     }
     
     

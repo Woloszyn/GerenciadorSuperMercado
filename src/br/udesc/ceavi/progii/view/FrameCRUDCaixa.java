@@ -6,6 +6,7 @@
 package br.udesc.ceavi.progii.view;
 
 import br.udesc.ceavi.progii.models.Caixa;
+import br.udesc.ceavi.progii.view.listeners.ListenerCRUDCaixa;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,7 +27,6 @@ public  class FrameCRUDCaixa extends FrameCRUD {
     private static FrameCRUDCaixa instancia;
     private static final String titulo = "Caixa" ;
     private static final Dimension dimensao = new Dimension(600, 400);
-    
     
     
     private final String colunas[]={"Entrada","Saida","Saldo"};
@@ -99,6 +99,9 @@ public  class FrameCRUDCaixa extends FrameCRUD {
     }
 
     public Caixa getCaixa() {
+        caixa.setEntrada(Double.parseDouble(tfEntrada.getText()));
+        caixa.setSaida(Double.parseDouble(tfSaida.getText()));
+        caixa.setSaldo(calculaSaldo());
         return caixa;
     }
 
@@ -157,14 +160,35 @@ public  class FrameCRUDCaixa extends FrameCRUD {
         
     }
 
+    public JTextField getTfEntrada() {
+        return tfEntrada;
+    }
+
+    public void setTfEntrada(JTextField tfEntrada) {
+        this.tfEntrada = tfEntrada;
+    }
+
+    public JTextField getTfSaida() {
+        return tfSaida;
+    }
+
+    public void setTfSaida(JTextField tfSaida) {
+        this.tfSaida = tfSaida;
+    }
+    
     @Override
     public void limparCampos() {
+        
+
+    }
+
+    
+    public void carregarCampos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void carregarCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private double calculaSaldo() {
+        return getCaixa().getEntrada()-getCaixa().getSaida();
     }
         
     

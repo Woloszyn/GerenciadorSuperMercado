@@ -55,6 +55,7 @@ import javax.swing.JTextField;
          lbValidade = new Label("Validade:");
          
          tfID = new JTextField();
+         
          tfLote = new JTextField();
          tfNome = new JTextField();
          tfPreco = new JTextField();
@@ -174,5 +175,55 @@ import javax.swing.JTextField;
         this.add(tfLote, cons);
          
      }
+
+    public JTextField getTfID() {
+        return tfID;
+    }
+
+    public void setTfID(String tfID) {
+        this.tfID.setText(tfID);
+    }
+
+    public JTextField getTfNome() {
+        return tfNome;
+    }
+
+    public void setTfNome(String tfNome) {
+        this.tfNome.setText(tfNome);
+    }
+
+    public JTextField getTfQuant() {
+        return tfQuant;
+    }
+
+    public void setTfQuant(String tfQuant) {
+        this.tfQuant.setText(tfQuant);
+    }
+
+    public JTextField getTfPreco() {
+        return tfPreco;
+    }
+
+    public void setTfPreco(String tfPreco) {
+        this.tfPreco.setText(tfPreco);
+    }
+
+    public JTextField getTfValidade() {
+        return tfValidade;
+    }
+
+    public void setTfValidade(String tfValidade) {
+        this.tfValidade.setText(tfValidade);
+    }
+
+    public JTextField getTfLote() {
+        return tfLote;
+    }
+
+    public void setTfLote(String tfLote) {
+        this.tfLote.setText(tfLote);
+    }
+     
+     
      
 }

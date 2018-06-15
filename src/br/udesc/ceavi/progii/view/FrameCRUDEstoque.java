@@ -29,19 +29,6 @@ public  class FrameCRUDEstoque extends FrameCRUD {
     private static final String titulo = "Estoque" ;
     private static final Dimension dimensao = new Dimension(600, 400);
     private JScrollPane scrollRolagem ;
-    private final String colunas[]={"idProduto","Nome ","Quantidade","Preço","Validade","Lote"};
-    private final String dados[][]={
-            {"100254","Arroz","40","2,50","23/10/2019","18223"},
-            {"100254","Arroz","40","2,50","23/10/2019","18223"},
-            {"100254","Arroz","40","2,50","23/10/2019","18223"},
-            {"100254","Arroz","40","2,50","23/10/2019","18223"},
-            {"100254","Arroz","40","2,50","23/10/2019","18223"},
-            {"100254","Arroz","40","2,50","23/10/2019","18223"},
-            {"100254","Arroz","40","2,50","23/10/2019","18223"},
-            {"100254","Arroz","40","2,50","23/10/2019","18223"},
-            {"100254","Arroz","40","2,50","23/10/2019","18223"},
-            {"100254","Arroz","40","2,50","23/10/2019","18223"},
-            {"25866","Feijão","90","4,30","27/09/2020","14566"}};
     
     private Produtos produtos ;
     private JPanel panelFormulario ;
@@ -73,7 +60,7 @@ public  class FrameCRUDEstoque extends FrameCRUD {
         panelProdutos = new PanelProdutos(contProd);
         panelProdutos.setBorder(BorderFactory.createTitledBorder("Produtos"));
         layout = new GridBagLayout();
-         tabela=new JTable(dados,colunas);
+         tabela=new JTable();
         tabela.setPreferredScrollableViewportSize(new Dimension(500,100));//barra de rolagem
         tabela.setFillsViewportHeight(true);
         scrollRolagem = new JScrollPane(tabela);
@@ -107,15 +94,30 @@ public  class FrameCRUDEstoque extends FrameCRUD {
 
     @Override
     public void limparCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        panelProdutos.setTfID("");
+        panelProdutos.setTfLote("");
+        panelProdutos.setTfNome("");
+        panelProdutos.setTfPreco("");
+        panelProdutos.setTfQuant("");
+        panelProdutos.setTfValidade("");
+        
     }
 
-    @Override
+    
     public void carregarCampos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public void setProduto(Produtos produto) {
+       this.produtos = produto ;
+               
+    }
         
-    
+    public Produtos getProduto(Produtos produto) {
+        produto.setId(Integer.parseInt(panelProdutos.getTfID().getText()));
+        
+        return this.produtos;  
+    }
     
     
 }
