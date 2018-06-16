@@ -41,7 +41,7 @@ public class FilialJpaController implements Serializable {
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findFilial(filial.getCnpj()) != null) {
-                throw new PreexistingEntityException("Filial " + filial + " já existe.", ex);
+                throw new PreexistingEntityException("Filial " + filial + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -63,7 +63,7 @@ public class FilialJpaController implements Serializable {
             if (msg == null || msg.length() == 0) {
                 String id = filial.getCnpj();
                 if (findFilial(id) == null) {
-                    throw new NonexistentEntityException("A filial com o CNPJ " + id + " não existe.");
+                    throw new NonexistentEntityException("The filial with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -84,7 +84,7 @@ public class FilialJpaController implements Serializable {
                 filial = em.getReference(Filial.class, id);
                 filial.getCnpj();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("A filial com o id " + id + " não existe ", enfe);
+                throw new NonexistentEntityException("The filial with id " + id + " no longer exists.", enfe);
             }
             em.remove(filial);
             em.getTransaction().commit();

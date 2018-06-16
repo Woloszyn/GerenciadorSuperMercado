@@ -17,10 +17,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
- *Implementação de todas as funções de uma classe Controller 
+ *
  * @author Eduardo Woloszyn
- * @version 1.0
- * @since 09/06/2018
  */
 public class CaixaJpaController implements Serializable {
 

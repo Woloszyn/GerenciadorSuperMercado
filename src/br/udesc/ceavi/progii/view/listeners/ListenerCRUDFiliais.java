@@ -5,6 +5,7 @@
  */
 package br.udesc.ceavi.progii.view.listeners;
 
+import br.udesc.ceavi.progii.control.dao.exceptions.CampoVazioException;
 import br.udesc.ceavi.progii.control.jpacontroller.FilialJpaController;
 import br.udesc.ceavi.progii.control.dao.exceptions.NumeroCnpjInvalido;
 import br.udesc.ceavi.progii.control.dao.interfaces.DAO;
@@ -94,7 +95,15 @@ public class ListenerCRUDFiliais {
         public void actionPerformed(ActionEvent e) {
             int resposta = JOptionPane.showConfirmDialog(frame,"Deseja excluir os dados selecionados ?","Confirmar?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             if (resposta == JOptionPane.YES_OPTION) {
-               frame.limparCampos();
+                try {
+                    filial =((FrameCRUDFiliais)frame).getFilial();
+                    DAO dao = new FiliaisDAO();
+                    dao.btnExcluir(filial);
+                    frame.limparCampos();
+                } catch (Exception ex) {
+                    
+                    Logger.getLogger(ListenerCRUDFiliais.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         
         }
@@ -143,7 +152,7 @@ public class ListenerCRUDFiliais {
             
             try {
                 dao.btnPesquisar(((FrameCRUDFiliais)frame).getPesquisa());
-            } catch (Exception ex) {
+            } catch (CampoVazioException ex) {
                 Logger.getLogger(ListenerCRUDFiliais.class.getName()).log(Level.SEVERE, null, ex);
             }
             

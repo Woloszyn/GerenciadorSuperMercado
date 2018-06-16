@@ -16,8 +16,6 @@ public class EstoqueDAO implements DAO<Produtos> {
     @Override
     public boolean btnGravar(Produtos obj) throws Exception {
         
-        
-        
         return true ;
     }
 
