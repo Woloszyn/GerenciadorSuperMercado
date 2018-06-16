@@ -84,7 +84,6 @@ public class FrameCRUDFornecedor extends FrameCRUD {
         panelFormulario.setBorder(BorderFactory.createTitledBorder("Dados do Fornecedor"));
         
         panelProdutos = new PanelProdutos(this);
-        
         panelProdutos.setBorder(BorderFactory.createTitledBorder("Produtos"));
                
     }
@@ -106,7 +105,7 @@ public class FrameCRUDFornecedor extends FrameCRUD {
         cons.ipadx = 50;
         panelFormulario.add(tfCNPJ, cons);
         
-                cons = new GridBagConstraints();
+        cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 1;
         cons.gridwidth = 1;

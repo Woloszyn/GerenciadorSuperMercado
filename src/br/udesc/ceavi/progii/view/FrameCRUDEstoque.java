@@ -73,8 +73,9 @@ public  class FrameCRUDEstoque extends FrameCRUD {
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 0;
-        cons.gridwidth = 1;
+        cons.gridwidth = 2;
         cons.fill = GridBagConstraints.HORIZONTAL;
+        cons.ipadx = 10 ;
         panelFormulario.add(panelProdutos, cons);
 
         cons = new GridBagConstraints();

@@ -6,9 +6,8 @@ import br.udesc.ceavi.progii.control.jpacontroller.FilialJpaController;
 import br.udesc.ceavi.progii.control.dao.exceptions.NumeroCEPInvalido;
 import br.udesc.ceavi.progii.control.dao.exceptions.NumeroCnpjInvalido;
 import br.udesc.ceavi.progii.control.dao.exceptions.NumeroNumeroInvalido;
+import br.udesc.ceavi.progii.control.jpacontroller.exceptions.NonexistentEntityException;
 import br.udesc.ceavi.progii.models.Filial;
-import br.udesc.ceavi.progii.view.FrameCRUDFiliais;
-import br.udesc.ceavi.progii.view.listeners.ListenerCRUDFiliais;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -23,8 +22,7 @@ import javax.swing.JOptionPane;
  * @since 04/06/2018
  */
 public class FiliaisDAO implements DAO<Filial>{
-   private FilialJpaController jpaFilial;
-    
+   private FilialJpaController jpaFilial ;
     @Override
     public boolean btnGravar(Filial obj) throws NumeroCnpjInvalido,NumeroCEPInvalido, NumeroNumeroInvalido {
         if (obj.getCnpj().length()>14) {
@@ -42,6 +40,8 @@ public class FiliaisDAO implements DAO<Filial>{
             throw new NumeroNumeroInvalido("Número não está no intervalo certo");
         } 
         create(obj);
+        
+        
      return true ;   
     }
 
@@ -57,29 +57,41 @@ public class FiliaisDAO implements DAO<Filial>{
 
     @Override
     public boolean btnExcluir(Filial obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        remove(obj);
+        return true ;
     }
     
     public boolean btnPesquisar(String obj)throws CampoVazioException{
         if (obj.isEmpty()) {
             throw new CampoVazioException()  ;
         }
-            
-       
-       
         return true ;
     }
     
-    private void create(Filial objeto) {
+    
+    private void remove(Filial objeto) {
         EntityManagerFactory objManagerFactory = Persistence.createEntityManagerFactory("GerenciadorSupermercadoPU");
-                EntityManager manager = objManagerFactory.createEntityManager();
-                jpaFilial = new FilialJpaController(objManagerFactory);
-       try {
+        EntityManager manager = objManagerFactory.createEntityManager();
+        jpaFilial = new FilialJpaController(objManagerFactory);
+        try {
+           jpaFilial.destroy(objeto.getCnpj());
+       } catch (NonexistentEntityException ex) {
+           JOptionPane.showMessageDialog(null,"Não foi achado esse cnpj em nosso banco de dados","Erro",JOptionPane.ERROR_MESSAGE);
+           Logger.getLogger(FiliaisDAO.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    } 
+    public void create(Filial objeto) {
+        EntityManagerFactory objManagerFactory = Persistence.createEntityManagerFactory("GerenciadorSupermercadoPU");
+        EntityManager manager = objManagerFactory.createEntityManager();
+        jpaFilial = new FilialJpaController(objManagerFactory);
+        try {
            jpaFilial.create(objeto);
        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(null,ex.getMessage(),"Erro",JOptionPane.ERROR_MESSAGE);
            Logger.getLogger(FiliaisDAO.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+    
     
     
         
